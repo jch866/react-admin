@@ -55,3 +55,9 @@ onChange = {(e)=>{this.setState({username:e.target.value})}}
 使用--save安装的打包都打进去，
 使用--save-dev安装的不进行打包，故打包大小就有区别，根据自己的需要进行选择--save 还是--save-dev
 只是在开发过程中需要的工具或者文件我们 使用 --save-dev 即可
+
+
+利用context来完成传值  
+1.定义const GlobalContext = React.createContext();
+2.App变成供应商 <GlobalContext.Provider value={object}>
+3.子组件成消费者 <GlobalContext.Consumer>   里面是一个回调函数，同时把值传进来 (value)=>{}
