@@ -1,0 +1,29 @@
+public/js/prod.config.js
+public/js/uat.config.js
+public/js/dev.config.js
+public/js/config.js
+public/index.html
+.DS_Store
+Thumbs.db
+node_modules
+/dist
+package-lock.json
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.project
