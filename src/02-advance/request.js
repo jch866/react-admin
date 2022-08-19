@@ -12,10 +12,6 @@ export default {
                 'X-Host': 'mall.film-ticket.film.list'
             }
         }).then(res => {
-            console.log(res)
-            // this.setState({
-            //     list: res.data.data.films
-            // })
             return res.data;
         }).catch(error => {
             console.log(error)
