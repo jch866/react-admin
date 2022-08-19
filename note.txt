@@ -1,0 +1,63 @@
+cd sites/admin && npm start
+rfc  rcc 创建文件结构 快捷方式
+重新学习 react 查漏补缺
+jsx中：
+class -> className
+for -> htmlFor   <label htmlFor='usename'>用户名</lable> <input id='usename'/>
+for 属性规定 label 与哪个表单元素绑定。
+React推荐行内样式
+注释{/* */}
+React btn中的点击事件this.handleClick不要加 (),和vue不同
+
+call apply 改变this指向 并且自动执行  bind改变this指向，但不执行
+
+es7 class中的属性可以直接用a = (){} 这种方式定义，不用强制写在constructor中
+class A{constructor(){} c=333}; (new A()).c ===333
+React并不会真正绑定到每个具体的元素上采用的是事件代理 的方式
+事件代理：https://www.bilibili.com/video/BV1dP4y1c7qd?p=12&spm_id_from=pageDriver
+this.refs.mytext
+a = [1,2,3] b= [...a] ||  b = a.slice() || b = a.concat(); //避免引用赋值
+
+1.三目{this.state.lists.length === 0 ? <div>暂无待办事项</div>:null} 
+2.{this.state.lists.length === 0 && <div>暂无待办事项</div>}
+3.<div className={条件?'hidden':''}>暂无待办事项</div>
+
+富文本创建的内容  https://www.bilibili.com/video/BV1dP4y1c7qd?p=20&spm_id_from=pageDriver
+(<div  dangerouslySetInnerHTML={{__html: this.state.content}} /> )// 注意这里是两个下下划线 __html
+
+setState同步和异步讲解
+setState有第二个参数，它是一个回调函数 状态和DOM更新完成
+setState在一个同步的逻辑中 是个异步更新状态 更新真实DOM
+setState在一个异步的逻辑中 是个同步更新状态 同步更新真实DOM(axios也是一个异步环境)
+setTimeout(()=>{setState},0)
+setState 会重新调用render;
+
+betterScroll 
+类 组件自带props属性； this.props
+prop-types
+属性验证 和类的静态属性一样 
+Navbar.propTypes = { title : 验证是不是字符串的方法} // static propTypes = {}
+Navbar.defaultProps = { title : 默认属性}
+传多个属性参数 {...obj}
+函数式组件，没有this  可以直接传形参 function(props){return } // 和类式组件的传参区别
+
+父子通信
+
+如果通过ref来访问表单 中 input，是非受控的，如果给这个表单中的input提供一个默认值 value='kerwin'，会发现这个非受控的，其它内容也输入不了了；
+这种情况要把默认值的属性名改成 'defaultValue'
+
+受控组件  input 中的vlaue = {this.state.username} react中onInput 和 onChange的行为是一样的 同效的
+onChange = {(e)=>{this.setState({username:e.target.value})}}
+
+过滤列表方案优化； 1.有一个备份数据源，占内存 2.利用受控组件来完成，不用备份数据
+父子通信 父 传子 属性    ；  子传父 回调函数；
+
+使用--save安装的打包都打进去，
+使用--save-dev安装的不进行打包，故打包大小就有区别，根据自己的需要进行选择--save 还是--save-dev
+只是在开发过程中需要的工具或者文件我们 使用 --save-dev 即可
+
+
+利用context来完成传值  
+1.定义const GlobalContext = React.createContext();
+2.App变成供应商 <GlobalContext.Provider value={object}>
+3.子组件成消费者 <GlobalContext.Consumer>   里面是一个回调函数，同时把值传进来 (value)=>{}
