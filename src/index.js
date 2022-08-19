@@ -5,7 +5,7 @@
 // console.log("hello world kerwin")
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './02-advance/09-slot版子传父'
+import App from './02-advance/12-生命周期-更新阶段2'
 
 
 ReactDOM.render(

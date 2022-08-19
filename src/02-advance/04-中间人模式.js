@@ -33,11 +33,14 @@ class FilmDetail extends Component {
 export default class App extends Component {
     constructor() {
         super();
-        this.getData();
+        // this.getData(); 修改为生命周期中请求
         this.state = {
             list: [],
             info:''
         }
+    }
+    componentDidMount(){
+        this.getData()
     }
     getData() {
         let url = 'https://m.maizuo.com/gateway?cityId=110100&pageNum=1&pageSize=10&type=1&k=641705';

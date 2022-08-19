@@ -38,6 +38,8 @@ export default class App extends Component {
         console.log(this.state.list);
         console.log(document.querySelectorAll('li'));
         // new BScroll(".wrap")  list为空 li节点也为空
+        //  componentDidMount 中 DOM元素上树后可以使用 new BScroll
+        //  componentDidUpdate 中 DOM元素上树后可以使用 new BScroll 但会执行多次
     }
     getData1() {
         let list = [1, 2, 3, 4, 5, 6, 7, 8, 9, 0, 11, 12, 13, 14, 15, 16, 17];
