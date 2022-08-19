@@ -95,3 +95,12 @@
         padding: 10px;
         font-size: 12px;
     }
+    
+    .boxwrap {
+        display: flex;
+        flex-wrap: wrap;
+    }
+    
+    .boxwrap>div {
+        margin: 0 4px;
+    }
