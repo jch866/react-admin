@@ -5,7 +5,7 @@
 // console.log("hello world kerwin")
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './02-advance/16-生命周期-销毁'
+import App from './02-advance/18-getDerivedStateFromProps-案例'
 
 
 ReactDOM.render(

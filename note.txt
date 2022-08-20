@@ -61,3 +61,15 @@ onChange = {(e)=>{this.setState({username:e.target.value})}}
 1.定义const GlobalContext = React.createContext();
 2.App变成供应商 <GlobalContext.Provider value={object}>
 3.子组件成消费者 <GlobalContext.Consumer>   里面是一个回调函数，同时把值传进来 (value)=>{}
+老的生命周期
+(1) componentWillMount ,在ssr中 这个方法将会被多次调用， 所以会重复触发多遍，同时在这里如果绑定事件，
+将无法解绑，导致内存泄漏 ， 变得不够安全高效逐步废弃。
+(2) componentWillReceiveProps 外部组件多次频繁更新传入多次不同的 props，会导致不必要的异步请求
+(3) componetWillupdate, 更新前记录 DOM 状态, 可能会做一些处理，与componentDidUpdate相隔时间如果过
+长， 会导致 状态不太信
+新的生命周期
+（1）getDerivedStateFromProps 第一次的初始化组件以及后续的更新过程中(包括自身状态更新以及父传子) ，
+返回一个对象作为新的state，返回null则说明不需要在这里更新state
+ (2) getSnapshotBeforeUpdate 取代了 componetWillUpdate ,触发时间为update发生的时候，在render之后
+dom渲染之前返回一个值，作为componentDidUpdate的第三个参数。
+

@@ -4,7 +4,8 @@ import request from "./request";
 const { getFilms } = request;
 class FilmList extends Component {
     state = {
-        list: []
+        list: [],
+        type:1
     }
     getData(type){
         let dataFn = type ===1 ? getFilms(1):getFilms(2);
@@ -17,11 +18,30 @@ class FilmList extends Component {
     componentDidMount() { //只在创建时执行 点击切换时不执行了
         this.getData(this.props.type)
     }
-    UNSAFE_componentWillReceiveProps(nextProps) { //状态更改时执行  一般会频繁触发
-        this.getData(nextProps.type)
-        // console.log(nextProps.type);
-        // nextProps.type === 1 ? getFilms(1) : getFilms(2);
+    static getDerivedStateFromProps(nextProps,nextState){
+        console.log('getDerivedStateFromProps',nextProps)
+        //没有this当然也不能this.setState操作
+        return {
+            type:nextProps.type
+        }
     }
+    componentDidUpdate(prevProps,prevState){
+        console.log('this.state.type',this.state.type);
+        if(this.state.type === prevProps.type){ //新老状态相比，避免死循环
+            return 
+        }
+        let dataFn = this.state.type ===1 ? getFilms(1):getFilms(2);
+        dataFn.then(res=>{ //list更新会触发getDerivedStateFromProps 从而造成死循环
+            this.setState({
+                list:res.data.films
+            })
+        })
+    }
+    // UNSAFE_componentWillReceiveProps(nextProps) { //切换时执行
+    //     this.getData(nextProps.type)
+    //     // console.log(nextProps.type);
+    //     // nextProps.type === 1 ? getFilms(1) : getFilms(2);
+    // }
     render() {
         return (
             <div>
@@ -59,4 +79,7 @@ export default class App extends Component {
         )
     }
 }
-//<Child text={text}/> 不加属性也会触发 componentWillReceiveProps 钩子
+//getDerivedStateFromProps 新生命周期   
+// UNSAFE_componentWillReceiveProps  老生命周期    新老不共存
+// getDerivedStateFromProps  代替了componentWillMount(初始化) componentWillReceiveProps(父传子)略显麻烦，但性能有所提升 
+//搭配componentDidMount(第一次请求数据)，componentDidUpdate，利用最新的state 来做业务

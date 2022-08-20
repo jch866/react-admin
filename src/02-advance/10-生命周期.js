@@ -27,3 +27,4 @@ export default class App extends Component {
 }
 
 //生命周期存在于类组件中，函数组件暂无
+//生命周期的参数
