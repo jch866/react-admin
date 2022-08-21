@@ -5,7 +5,7 @@
 // console.log("hello world kerwin")
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './02-advance/18-getDerivedStateFromProps-案例'
+import App from './02-advance/20-pureComponent'
 
 
 ReactDOM.render(
