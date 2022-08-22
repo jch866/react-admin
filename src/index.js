@@ -5,7 +5,7 @@
 // console.log("hello world kerwin")
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './02-advance/24-swiper-封装'
+import App from './03-hooks/05-useCallback'
 
 
 ReactDOM.render(
