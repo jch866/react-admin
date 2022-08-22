@@ -73,3 +73,4 @@ onChange = {(e)=>{this.setState({username:e.target.value})}}
  (2) getSnapshotBeforeUpdate 取代了 componetWillUpdate ,触发时间为update发生的时候，在render之后
 dom渲染之前返回一个值，作为componentDidUpdate的第三个参数。
 
+// https://www.swiper.com.cn/ swiper官网

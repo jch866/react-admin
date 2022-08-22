@@ -82,4 +82,4 @@ export default class App extends Component {
 //getDerivedStateFromProps 新生命周期   
 // UNSAFE_componentWillReceiveProps  老生命周期    新老不共存
 // getDerivedStateFromProps  代替了componentWillMount(初始化) componentWillReceiveProps(父传子)略显麻烦，但性能有所提升 
-//搭配componentDidMount(第一次请求数据)，componentDidUpdate，利用最新的state 来做业务
+// 搭配componentDidMount(第一次请求数据)，配合componentDidUpdate，利用最新的state 来做业务
