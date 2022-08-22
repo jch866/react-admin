@@ -2,6 +2,7 @@
 import React, { useCallback, useState } from 'react'
 
 export default function App() {
+    let [name,setName] = useState('libai');
     let [text,setText] = useState('');
     let [list,setList] = useState([]); 
     const addHandle = useCallback(
@@ -21,6 +22,11 @@ export default function App() {
     )
   return (
     <div>
+        {name}
+        <button onClick={()=>{
+            setName('dufu')
+        }}>changeName</button>
+        <hr/>
         <input onInput={(e)=>{
             setText(e.target.value)
         }} value={text} />
@@ -44,3 +50,5 @@ export default function App() {
 // useCallback就可以解决这个问题  useCallback 可以缓存函数 只在和依赖有关的变量变更时才重新创建
 
 //useCallback  useState都有一定的‘记忆’功能，都是由闭包原理来实现的
+
+//name 修改时，其它函数不受影响
