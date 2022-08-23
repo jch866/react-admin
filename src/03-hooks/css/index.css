@@ -94,6 +94,7 @@ ul {
     background: yellow;
     padding: 10px;
     font-size: 12px;
+    overflow: auto;
 }
 
 .boxwrap {
