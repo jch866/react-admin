@@ -54,3 +54,5 @@ export default function Cinema() {
     )
 }
 // useMemo 类似于计算属性，直接在依赖变更时返回计算好的值 
+// useCallback 常用记忆事件函数，生成记忆后的事件函数并传递给子组件使用。而 useMemo 更适合经过函数
+// 计算得到一个确定的值，比如记忆组件
