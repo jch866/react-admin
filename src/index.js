@@ -5,7 +5,7 @@
 // console.log("hello world kerwin")
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './03-hooks/11-useReducer3'
+import App from './03-hooks/12-自定义hooks'
 
 
 ReactDOM.render(
