@@ -5,15 +5,23 @@ import Center from './../views/Center'
 import Cinema from './../views/Cinema';
 import Films from './../views/Films';
 import Detail from './../views/Detail';
+import Login from './../views/Login';
 import NotFound from './../views/NotFound'
 
+function isAuth(){
+    return window.localStorage.getItem('token')
+}
 export default class IndexRouter extends Component {
     render() {
         return (
             <HashRouter>
                 {this.props.children}
                 <Switch>
-                    <Route path='/center' component={Center} ></Route>
+                    <Route path='/center' render={()=>{
+                        return isAuth()?<Center/>: <Redirect to='/login' exact/>
+                    }}></Route>
+                    <Route path='/login' component={Login} ></Route>
+                    {/* <Route path='/center' component={Center} ></Route> */}
                     <Route path='/cinema' component={Cinema} ></Route>
                     <Route path='/films' component={Films} ></Route>
                     {/* 动态路由传参 */}

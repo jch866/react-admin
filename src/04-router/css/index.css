@@ -9,6 +9,12 @@ ul {
     margin: 0;
 }
 
+a {
+    text-decoration: none;
+    color: #333;
+    font-size: 13px;
+}
+
 .active {
     color: red
 }
@@ -49,4 +55,19 @@ ul {
 .bottom-tab li {
     flex: 1;
     text-align: center;
+}
+
+.playing-tab {
+    display: flex;
+    border-bottom: 1px solid yellowgreen;
+}
+
+.playing-tab li {
+    flex: 1;
+    text-align: center;
+}
+
+.playactive {
+    font-weight: bold;
+    color: blueviolet
 }
