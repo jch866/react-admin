@@ -36,6 +36,7 @@ export default {
     },
     getComingsoon:()=>{
         //猫眼即将上映
+        //https://i.maoyan.com/ajax/comingList?ci=30&limit=10&movieIds=&token=&optimus_uuid=F10E4F2023AB11ED8AC767432FCE8EC3E6056F125F624C23AB85F1664E9C6576&optimus_risk_level=71&optimus_code=10
         let url = '/ajax/comingList?ci=30&limit=10&movieIds=&token=&optimus_uuid=F10E4F2023AB11ED8AC767432FCE8EC3E6056F125F624C23AB85F1664E9C6576&optimus_risk_level=71&optimus_code=10';
         window.localStorage.setItem('__lxsdk__lxsdk_cuid','181310de1dcc8-0c549449dd113-367a6700-13c680-181310de1dcc8');
         return axios.get(url, {
