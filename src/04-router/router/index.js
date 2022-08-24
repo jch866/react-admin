@@ -10,6 +10,7 @@ export default class IndexRouter extends Component {
     render() {
         return (
             <HashRouter>
+                {this.props.children}
                 <Switch>
                     <Route path='/center' component={Center} ></Route>
                     <Route path='/cinema' component={Cinema} ></Route>

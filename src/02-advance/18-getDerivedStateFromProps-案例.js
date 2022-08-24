@@ -1,6 +1,6 @@
 import { resetWarningCache } from 'prop-types';
 import React, { Component } from 'react'
-import request from "./request";
+import request from "./../../src/request";
 const { getFilms } = request;
 class FilmList extends Component {
     state = {

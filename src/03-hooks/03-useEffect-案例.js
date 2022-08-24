@@ -1,5 +1,5 @@
 import React, { useEffect, useState, Component } from 'react'
-import request from "../02-advance/request";
+import request from "./../../src/request";
 const { getFilms } = request;
 //函数式组件 
 function FilmList(props) {

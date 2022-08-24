@@ -1,0 +1,52 @@
+* {
+    padding: 0;
+    margin: 0;
+}
+
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.active {
+    color: red
+}
+
+.bottom-tab {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #333333;
+    background-color: white;
+}
+
+.film-swiper {
+    height: 30px;
+    background-color: yellow;
+    text-align: center;
+}
+
+.film-bar {
+    background-color: yellowgreen;
+    text-align: center;
+}
+
+.bottom-tab {
+    position: fixed;
+    bottom: 0;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+    display: flex;
+    border-top: 1px solid #333333;
+    background-color: white;
+}
+
+.bottom-tab li {
+    flex: 1;
+    text-align: center;
+}

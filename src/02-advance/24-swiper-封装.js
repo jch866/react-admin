@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Kswiper from './23-swiper';
 import KswiperItem from './23-swiper-item';
-import request from "./request";
+import request from "./../../src/request";
 const { getFilms } = request; //真实数据请求
 export default class App extends Component {
     state = {

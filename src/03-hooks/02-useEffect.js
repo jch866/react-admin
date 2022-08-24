@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import request from "./../02-advance/request";
+import request from "./../../src/request";
 const { getFilms } = request;
 export default function App() {
     let [name, setName] = useState('apple');
