@@ -15,7 +15,12 @@ export default function Nowplaying(props) {
   const handleChangePage = (id)=>{
     // window.location.href = `#/detail/${id}`;
     //props.history.push(`/detail/${id}`)
-    Uhistory.push(`/detail/${id}`)
+    // 1.动态路由传参 
+    Uhistory.push(`/detail/${id}`);
+    // 2.query传参过去
+    // Uhistory.push({pathname:'/detail',query:{id}})
+    //3.state 传参  query  state 也可以改成abc之类的，但后面要接受也要用props.location.abc
+    //Uhistory.push({pathname:'/detail',state:{id}})
   }
   return (
     <div>
@@ -33,8 +38,10 @@ export default function Nowplaying(props) {
   )
 }
 
+//动态路由复制连接给其它人不会报错 
+//query传参会报错，拿不到ID
 
-// console.dir(props)
+// console.dir(props) props是路由组件传过来的属性
 // {
 //   "history": {
 //       "length": 44,

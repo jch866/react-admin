@@ -1,0 +1,64 @@
+{
+    "status": 0,
+    "data": {
+        "film": {
+            "filmId": 6048,
+            "name": "小黄人大眼萌：神偷奶爸前传",
+            "poster": "https://pic.maizuo.com/usr/movie/c7350aab75db63a8bec1f928419aa774.jpg",
+            "actors": [{
+                    "name": "凯尔·巴尔达",
+                    "role": "导演",
+                    "avatarAddress": "https://pic.maizuo.com/usr/movie/6b2dbd4570ace5edb1ae453dc9a47bcb.jpg"
+                },
+                {
+                    "name": "布拉德·埃布尔森",
+                    "role": "联合导演",
+                    "avatarAddress": "https://pic.maizuo.com/usr/movie/cf77b1c20f3daaa2a768bdfacc3c0e23.jpg"
+                },
+                {
+                    "name": "史蒂夫·卡瑞尔",
+                    "role": "Gru",
+                    "avatarAddress": "https://pic.maizuo.com/usr/movie/e54a0faa695ee4e2fa3d2de764ce9ed7.jpg"
+                },
+                {
+                    "name": "皮埃尔·柯芬",
+                    "role": "The Minions",
+                    "avatarAddress": "https://pic.maizuo.com/usr/movie/409cab7bbca3fe6ecee0ab979b16e58e.jpg"
+                },
+                {
+                    "name": "艾伦·阿金",
+                    "role": "Wild Knuckles",
+                    "avatarAddress": "https://pic.maizuo.com/usr/movie/4b0475c6df981ec03274f9090fc12f65.jpg"
+                }
+            ],
+            "director": "凯尔·巴尔达|布拉德·埃布尔森",
+            "category": "喜剧|动画|冒险",
+            "synopsis": "讲述一个梦想成为全世界最强超级反派的12岁小男孩的故事。  上世纪七十年代，蓬蓬头和喇叭裤风靡之际，格鲁（史蒂夫·卡瑞尔 配音）在城郊长大。他是超强反派组合“邪恶六天王”的忠实粉丝，想要跟他们一样坏，甚至加入他们。同时，他拥有一帮胡作非为的“得力助手”。凯文、斯图尔特、鲍勃，以及戴着牙套又极其热衷于讨好的新小黄人奥豆，各尽所能，大显身手，与格鲁一起建造首个基地，试验首批武器，并执行首次任务。  当“邪恶六天王”罢黜了他们的首领，传奇战士Wild Knuckles（艾伦·阿金 配音）后，格鲁前来应聘，希望加入组织。他并未顺利如愿，尤其当他发现自己似乎比另外几位还聪明，更成了这些顶级反派们的死敌时，事情就更难办了。逃命途中，格鲁请教了一位意想不到的人，即Wild Knuckles本尊，也明白了即使是大坏蛋，也有需要朋友帮助的时候。",
+            "filmType": {
+                "name": "2D",
+                "value": 1
+            },
+            "nation": "美国",
+            "language": "",
+            "videoId": "",
+            "premiereAt": 1660867200,
+            "timeType": 3,
+            "runtime": 90,
+            "photos": [
+                "https://pic.maizuo.com/usr/2022/23e8aeeceb1aa179ceff74a8346a2f98.jpg",
+                "https://pic.maizuo.com/usr/2022/2703fa2d2a33230dfe83401452e6074e.jpg",
+                "https://pic.maizuo.com/usr/2022/87653da63ab8da0a52787b6d710a97a7.jpg",
+                "https://pic.maizuo.com/usr/2022/c0b6d614db6b629c9d24174986139e65.jpg",
+                "https://pic.maizuo.com/usr/2022/c0e6afc5ab367b237dce24ce9ce5101c.jpg"
+            ],
+            "grade": "7.6",
+            "item": {
+                "name": "2D",
+                "type": 1
+            },
+            "isPresale": false,
+            "isSale": true
+        }
+    },
+    "msg": "ok"
+}
