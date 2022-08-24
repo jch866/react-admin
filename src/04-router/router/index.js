@@ -1,6 +1,8 @@
 import React, { Component } from 'react'
-import { HashRouter, Redirect, Route, Switch } from 'react-router-dom';
-
+import { BrowserRouter as Router, Redirect, Route, Switch } from 'react-router-dom';
+// BrowserRouter as Router 为了在切换路由模式时最小改动
+// BrowserRouter  HashRouter
+// BrowserRouter  是没有#的路径,美观,真正会向后端发请求要页面,如果后端没有路径处理,就会404
 import Center from './../views/Center'
 import Cinema from './../views/Cinema';
 import Films from './../views/Films';
@@ -14,7 +16,7 @@ function isAuth(){
 export default class IndexRouter extends Component {
     render() {
         return (
-            <HashRouter>
+            <Router>
                 {this.props.children}
                 <Switch>
                     <Route path='/center' render={()=>{
@@ -33,7 +35,7 @@ export default class IndexRouter extends Component {
                     <Redirect from='/' to='/films' exact/>
                     <Route component={NotFound}></Route>
                 </Switch>
-            </HashRouter>
+            </Router>
         )
     }
 }
