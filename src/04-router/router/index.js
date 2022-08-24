@@ -19,8 +19,9 @@ export default class IndexRouter extends Component {
             <Router>
                 {this.props.children}
                 <Switch>
-                    <Route path='/center' render={()=>{
-                        return isAuth()?<Center/>: <Redirect to='/login' exact/>
+                    <Route path='/center' render={(props)=>{
+                        // console.log(props)
+                        return isAuth()?<Center {...props}/>: <Redirect to='/login' exact/>
                     }}></Route>
                     <Route path='/login' component={Login} ></Route>
                     {/* <Route path='/center' component={Center} ></Route> */}
@@ -41,3 +42,19 @@ export default class IndexRouter extends Component {
 }
 //   from='/' 万能匹配  是模糊匹配  当path为'/cinema'时也会匹配到films
 // 利用Switch来解决
+
+// class Route extends Component{
+//     ...
+//     render(){
+//         const MyComponet = this.props.component;
+//         return (
+//             <div>
+//                 <MyComponet history={...} match={...} location={...} />
+//             </div>
+//         )
+//     }
+// }
+{/* <Route path='/center' component={Center} ></Route> */}
+// this.props.component 是指Center组件，这个组件实际上是当成了Route的子组件<MyComponet/>
+
+//当通过render来显示组件时，就需要把Route中的props手动传过去
