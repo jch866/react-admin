@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { NavLink, useHistory } from 'react-router-dom';
+import { NavLink, useHistory, withRouter } from 'react-router-dom';
 import request from "./../../request";
 const { getFilms } = request;
 //Nowplaying 是写在路由中的，它的父级是路由组件 非Films组件
@@ -33,7 +33,8 @@ export default function Nowplaying(props) {
             // </li>
 
             // {...props} 这里面包含了路由的相关属性和方法，方便子组件FilmItem 利用
-            return <FilmItem key={item.filmId} {...item} {...props} />
+            // WithFilmItem  时 {...props}就不需要传了
+            return <WithFilmItem key={item.filmId} {...item}  />
           })
         }
       </ul>
@@ -48,6 +49,7 @@ function FilmItem(props) {
     //TypeError: Cannot read properties of undefined (reading 'push') 
   }}>{name}</li>)
 }
+const WithFilmItem = withRouter(FilmItem);
 //动态路由复制连接给其它人不会报错
 //query传参会报错，拿不到ID
 
@@ -59,3 +61,5 @@ function FilmItem(props) {
 // }
 
 //层层传递路由相关属性和方法的案例
+
+// withRouter 高阶组件包装后就不需要一层层传递路由信息了

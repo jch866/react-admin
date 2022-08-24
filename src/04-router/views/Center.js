@@ -1,6 +1,7 @@
 import React from 'react'
+import { withRouter } from 'react-router'
 import './../css/index.css'
-export default function Center(props) {
+function Center(props) {
   console.log(props) // 父级不传就是 {}空对象
   return (
     <div>
@@ -18,4 +19,8 @@ export default function Center(props) {
     </div>
   )
 }
+
+export default withRouter(Center);
 // 当 通过render来显示组件时，就需要把Route中的props手动传过去 才可以调用props.history中的 方法
+
+// withRouter包装以后就不用依赖 父级route的props

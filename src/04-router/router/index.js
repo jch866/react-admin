@@ -21,7 +21,8 @@ export default class IndexRouter extends Component {
                 <Switch>
                     <Route path='/center' render={(props)=>{
                         // console.log(props)
-                        return isAuth()?<Center {...props}/>: <Redirect to='/login' exact/>
+                        // withRouter包装Center后{...props}就不用传了
+                        return isAuth()?<Center/>: <Redirect to='/login' exact/>
                     }}></Route>
                     <Route path='/login' component={Login} ></Route>
                     {/* <Route path='/center' component={Center} ></Route> */}
