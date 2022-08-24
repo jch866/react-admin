@@ -71,3 +71,13 @@ a {
     font-weight: bold;
     color: blueviolet
 }
+
+.comingsoon {
+    font-size: 13px;
+    padding: 5px;
+}
+
+.comingsoon li {
+    padding-bottom: 4px;
+    border-bottom: 1px solid #333;
+}
