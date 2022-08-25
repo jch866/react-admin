@@ -2,7 +2,8 @@ import React from 'react'
 import { Route ,Redirect,Switch,NavLink} from 'react-router-dom';
 import Comingsoon from "./../components/Comingsoon"
 import Nowplaying from "./../components/Nowplaying"
-import './../css/index.css'
+//import './../css/index.css'
+import style from "./../css/Films.module.css"
 export default function Films() {
   return (
     <div>
@@ -10,10 +11,10 @@ export default function Films() {
         <div className='film-bar'>导航栏</div>
         <ul className='playing-tab'>
           <li>
-            <NavLink to='/films/nowplaying' activeClassName='playactive'>正在上映</NavLink>
+            <NavLink to='/films/nowplaying' activeClassName={style.active}>正在上映</NavLink>
           </li>
           <li>
-            <NavLink to='/films/comingsoon' activeClassName='playactive'>即将上映</NavLink>
+            <NavLink to='/films/comingsoon' activeClassName={style.active}>即将上映</NavLink>
           </li>
         </ul>
         {/* 路由配置   嵌套路由 */}
