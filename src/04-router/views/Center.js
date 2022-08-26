@@ -5,7 +5,7 @@ function Center(props) {
   console.log(props) // 父级不传就是 {}空对象
   return (
     <div>
-      Center
+      <h4>个人中心</h4>
       <ul className='playing-tab'>
         <li onClick={() => {
           props.history.push('/filmsorder')

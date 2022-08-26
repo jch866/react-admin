@@ -9,6 +9,7 @@ import Films from './../views/Films';
 import Detail from './../views/Detail';
 import Login from './../views/Login';
 import NotFound from './../views/NotFound'
+import City from '../views/City';
 
 function isAuth(){
     return window.localStorage.getItem('token')
@@ -25,6 +26,7 @@ export default class IndexRouter extends Component {
                         return isAuth()?<Center/>: <Redirect to='/login' exact/>
                     }}></Route>
                     <Route path='/login' component={Login} ></Route>
+                    <Route path='/city' component={City} ></Route>
                     {/* <Route path='/center' component={Center} ></Route> */}
                     <Route path='/cinema' component={Cinema} ></Route>
                     <Route path='/films' component={Films} ></Route>
