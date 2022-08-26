@@ -9,7 +9,7 @@ export default class App extends Component {
   componentDidMount() {
     //store.getState(); 获取最新的状态
     store.subscribe(() => { //订阅
-      console.log('subscribe');
+      console.log('App subscribe');
       let { isTabbarShow } = store.getState().TabbarReducer;
       //isTabbarShow 转成当前组件的状态
       this.setState({

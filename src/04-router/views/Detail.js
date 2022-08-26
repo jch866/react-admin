@@ -11,7 +11,7 @@ export default function Detail(props) {
     // console.log(props.location.state.id)
     let [detailInfo,setDetail] = useState({})
     useEffect(()=>{
-        console.log('create');
+        console.log('详情detail create');
         store.dispatch(hide())//发布
         getDetail(id).then(res=>{
             if(res.status ===0){
@@ -19,7 +19,7 @@ export default function Detail(props) {
             }
         })
         return ()=>{
-            console.log('destory');
+            console.log('详情detail destory');
             store.dispatch(show())
         }
     },[])

@@ -42,6 +42,30 @@ a {
     text-align: center;
 }
 
+.cinemaList {
+    padding: 0 10px;
+    padding-bottom: 50px;
+}
+
+.cinemainput {
+    width: 99%;
+    height: 30px;
+    line-height: 30px;
+}
+
+.cinemaList li {
+    border-bottom: 1px solid #999;
+}
+
+.cinemaList li .name {
+    color: #333333;
+}
+
+.cinemaList li .addr {
+    color: #999;
+    font-size: 12px;
+}
+
 .bottom-tab {
     position: fixed;
     bottom: 0;
