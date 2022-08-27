@@ -14,20 +14,26 @@ export default function Cinema(props) {
       console.log('store 缓存')
     }
     //订阅
-    store.subscribe(() => {
+    let unsubscribe = store.subscribe(() => {
       console.log('cinema subscribe');
       setlist(store.getState().CinemaListReducer.list)
     })
+    return () => {
+      // 取消当前订阅 优化性能
+      unsubscribe()
+    }
   }, []);
 
   let [cityname, setcityname] = useState(store.getState().CityReducer.cityName);
   return (
     <div>
-      <h5>Cinema</h5>
-      {cityname}
+      Cinema - {cityname}
       <button onClick={() => {
         props.history.push('/city')
       }}>城市切换</button>
+      <button onClick={() => {
+        props.history.push('/cinema/search')
+      }}>搜索</button>
       <ul className="cinemaList">
         {
           list.map(item => {

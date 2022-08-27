@@ -1,8 +1,9 @@
 import request from './../../../request';
 const { getCinemaList } = request;
-function cinemachange() {
-    return (dispatch)=>{
-        getCinemaList().then(res=>{
+//redux-thunk
+function cinemachange1() {
+    return (dispatch) => {
+        getCinemaList().then(res => {
             dispatch({
                 type: 'get-cinemalist',
                 value: res.data.cinemas
@@ -10,6 +11,14 @@ function cinemachange() {
         })
     }
 }
- 
+//redux-promise
+function cinemachange() {
+    return getCinemaList().then(res => {
+        return {
+            type: 'get-cinemalist',
+            value: res.data.cinemas
+        }
+    })
+}
 
-export { cinemachange };
+export { cinemachange1, cinemachange };

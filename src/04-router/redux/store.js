@@ -5,6 +5,7 @@ import CityReducer from './reducers/CityReducer';
 import TabbarReducer from './reducers/TabbarReducer';
 import CinemaListReducer from './reducers/CinemaListReducer';
 import reduxThunk from 'redux-thunk'
+import reduxPromise from 'redux-promise'
 const reducer = combineReducers({
   CityReducer,TabbarReducer,CinemaListReducer
 })
@@ -26,7 +27,7 @@ const reducer = combineReducers({
 // }
  
 //createStore() 的第二个参数是可选的, 用于设置 state 初始状态。
-const store = createStore(reducer,applyMiddleware(reduxThunk));
+const store = createStore(reducer,applyMiddleware(reduxThunk,reduxPromise));
 
 //let [state,dispatchAction] = useReducer(reducer,initState);
 //  {    // store对象   createstore方法将弃用

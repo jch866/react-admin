@@ -10,6 +10,7 @@ import Detail from './../views/Detail';
 import Login from './../views/Login';
 import NotFound from './../views/NotFound'
 import City from '../views/City';
+import Search from '../views/Search';
 
 function isAuth(){
     return window.localStorage.getItem('token')
@@ -28,7 +29,8 @@ export default class IndexRouter extends Component {
                     <Route path='/login' component={Login} ></Route>
                     <Route path='/city' component={City} ></Route>
                     {/* <Route path='/center' component={Center} ></Route> */}
-                    <Route path='/cinema' component={Cinema} ></Route>
+                    <Route path='/cinema' component={Cinema} exact></Route>
+                    <Route path='/cinema/search' component={Search} ></Route>
                     <Route path='/films' component={Films} ></Route>
                     {/* 动态路由传参 */}
                     <Route path='/detail/:id' component={Detail} ></Route>
