@@ -1,30 +1,33 @@
 import React, { useEffect, useState } from 'react'
-import store from '../redux/store';
+// import store from '../redux/store';
+import {connect} from "react-redux"
 import { cinemachange } from '../redux/actionCreater/CinemaActionCreate';
-export default function Cinema(props) {
-  // console.log(store.getState().CityReducer);
-  let [list, setlist] = useState(store.getState().CinemaListReducer.list);
+function Cinema(props) {
 
+  // let [list, setlist] = useState(store.getState().CinemaListReducer.list);
+  let {list,cityname,cinemachange} = props;
   useEffect(() => {
-    let list = store.getState().CinemaListReducer.list;
+    // let list = store.getState().CinemaListReducer.list;
     if (list.length === 0) {
       //发布
-      store.dispatch(cinemachange())
-    } else {
-      console.log('store 缓存')
-    }
-    //订阅
-    let unsubscribe = store.subscribe(() => {
-      console.log('cinema subscribe');
-      setlist(store.getState().CinemaListReducer.list)
-    })
-    return () => {
-      // 取消当前订阅 优化性能
-      unsubscribe()
-    }
-  }, []);
+      //store.dispatch(cinemachange())
+      cinemachange()
+    } 
+    // else {
+    //   console.log('store 缓存')
+    // }
+    // //订阅
+    // let unsubscribe = store.subscribe(() => {
+    //   console.log('cinema subscribe');
+    //   setlist(store.getState().CinemaListReducer.list)
+    // })
+    // return () => {
+    //   // 取消当前订阅 优化性能
+    //   unsubscribe()
+    // }
+  }, [list,cityname,cinemachange]);
 
-  let [cityname, setcityname] = useState(store.getState().CityReducer.cityName);
+  // let [cityname, setcityname] = useState(store.getState().CityReducer.cityName);
   return (
     <div>
       Cinema - {cityname}
@@ -47,3 +50,13 @@ export default function Cinema(props) {
     </div>
   )
 }
+const mapStateToProps = (state)=>{
+  return {
+    list:state.CinemaListReducer.list,
+    cityname:state.CityReducer.cityname
+  }
+}
+const mapDispatchToProps = {
+  cinemachange
+};
+export default connect(mapStateToProps,mapDispatchToProps)(Cinema) 
