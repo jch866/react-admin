@@ -1,37 +1,44 @@
-import React, { useEffect,useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import store from '../redux/store';
-import {show,hide} from "./../redux/actionCreater/TabbarActionCreater"
+import { connect } from 'react-redux'
+import { show, hide } from "./../redux/actionCreater/TabbarActionCreater"
 import request from './../../request';
-const {getDetail} = request;
- 
-export default function Detail(props) {
-    // console.log(props.match.params.id);
-    const id = props.match.params.id;
-    // console.log(props.location.query.id)
-    // console.log(props.location.state.id)
-    let [detailInfo,setDetail] = useState({})
-    useEffect(()=>{
+const { getDetail } = request;
+
+function Detail(props) {
+    // const id = props.match.params.id;
+    // console.log(props.location.query.id,props.location.state.id)
+    const {match,hide,show} = props;//外部解构，直接把props当成依赖，会死循环；
+    const id = match.params.id;
+    let [detailInfo, setDetail] = useState({})
+    useEffect(() => {
         console.log('详情detail create');
-        store.dispatch(hide())//发布
-        getDetail(id).then(res=>{
-            if(res.status ===0){
+        hide();
+        // store.dispatch(hide())//发布
+        getDetail(id).then(res => {
+            if (res.status === 0) {
                 setDetail(res.data.film);
             }
         })
-        return ()=>{
+        return () => {
             console.log('详情detail destory');
-            store.dispatch(show())
+            // store.dispatch(show())
+            show();
         }
-    },[])
-    let {name,nation,category,synopsis} = detailInfo;
-  return (
-    <div>
-        <ul style={{padding:'10px',fontSize:'12px'}}>
-            <li>{name}</li>
-            <li>{nation}</li>
-            <li>{category}</li>
-            <li>{synopsis}</li>
-        </ul>
-    </div>
-  )
+    }, [match.params.id,hide,show])
+    let { name, nation, category, synopsis } = detailInfo;
+    return (
+        <div>
+            <ul style={{ padding: '10px', fontSize: '12px' }}>
+                <li>{name}</li>
+                <li>{nation}</li>
+                <li>{category}</li>
+                <li>{synopsis}</li>
+            </ul>
+        </div>
+    )
 }
+const mapDispatchToProps = {
+    show, hide
+}
+export default connect(null, mapDispatchToProps)(Detail)
