@@ -6,35 +6,34 @@ import TabbarReducer from './reducers/TabbarReducer';
 import CinemaListReducer from './reducers/CinemaListReducer';
 import reduxThunk from 'redux-thunk'
 import reduxPromise from 'redux-promise'
+import {persistStore,persistReducer} from 'redux-persist'
+import storage from 'redux-persist/lib/storage' // defaults to localStorage for web
+ 
 const reducer = combineReducers({
   CityReducer, TabbarReducer, CinemaListReducer
 })
+//required config: key, storage
+//notable other config: whitelist, blacklist, version, stateReconciler, debug
+const persistConfig = {
+  key: 'admin',
+  storage,
+  whitelist:['CityReducer']
+}
+const persistedReducer = persistReducer(persistConfig,reducer)
 //通过combineReducers 合并多个reducer; 并且相对的取值方式更新，类似于有个命名空间
 //reducer来处理具体数据逻辑
-// function reducer(prevstate, action){
-//     console.log(action)
-//     let state = {...prevstate};
-//     switch (action.type) {
-//         case 'hide-tabbar':
-//          state.isTabbarShow = false;
-//          return state;
-//         case 'show-tabbar':
-//           state.isTabbarShow = true;
-//           return state;
-//         default:
-//           return prevstate;
-//         }
-// }
+
 let devTool = true; // redux调试工具
 let store = null;
 if (devTool) {
   const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
-  store = createStore(reducer, /* preloadedState, */ composeEnhancers(applyMiddleware(reduxThunk, reduxPromise)))
+  store = createStore(persistedReducer, /* preloadedState, */ composeEnhancers(applyMiddleware(reduxThunk, reduxPromise)))
 } else {
   //createStore() 的第二个参数是可选的, 用于设置 state 初始状态。
-  store = createStore(reducer, applyMiddleware(reduxThunk, reduxPromise));
+  store = createStore(persistedReducer, applyMiddleware(reduxThunk, reduxPromise));
 }
 
+const persistor = persistStore(store)
 
 //let [state,dispatchAction] = useReducer(reducer,initState);
 //  {    // store对象   createstore方法将弃用
@@ -44,7 +43,7 @@ if (devTool) {
 // replaceReducer: ƒ replaceReducer(nextReducer)
 // subscribe: ƒ subscribe(listener)
 // }
-export default store;
+export default {store,persistor};
 
 /*
 var obj = {

@@ -12,7 +12,7 @@ const myConnect = (mapState,mapDispatch)=>{
   let value = mapState();
   return (Component)=>{
     return (props)=>( // props是组件自身的属性传过来的
-      <div style={{background:'red'}}>
+      <div style={{color:'red'}}>
         <Component {...value} {...mapDispatch} {...props}/>
       </div>
     )

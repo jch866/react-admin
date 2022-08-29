@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useMemo } from 'react'
-import store from '../redux/store';
+import storeObj from '../redux/store';
 import { cinemachange } from '../redux/actionCreater/CinemaActionCreate';
+const {store} = storeObj
 export default function Cinema(props) {
     // console.log(store.getState().CityReducer);
     let [list, setlist] = useState(store.getState().CinemaListReducer.list);

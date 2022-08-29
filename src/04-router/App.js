@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import Tabbar from './components/Tabbar'
 import Mrouter from './router/index'
-import store from "./redux/store"
+// import store from "./redux/store"/
 import {connect} from "react-redux"
 class App extends Component {
   // state = {
