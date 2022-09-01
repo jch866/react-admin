@@ -9,6 +9,19 @@ const url2 = 'https://m.maizuo.com/gateway?cityId=110100&pageNum=1&pageSize=10&t
 const url3 = 'https://m.maizuo.com/gateway?k=6436949&filmId=';
 
 export default {
+    getFilms_more: (count) => {
+        let url = `https://m.maizuo.com/gateway?cityId=110100&pageNum=${count}&pageSize=10&type=1&k=9930257`;
+        return axios.get(url, {
+            headers: {
+                'X-Client-Info': '{"a":"3000","ch":"1002","v":"5.2.1","e":"1660573198477325485408257","bc":"110100"}',
+                'X-Host': 'mall.film-ticket.film.list'
+            }
+        }).then(res => {
+            return res.data;
+        }).catch(error => {
+            console.log(error)
+        })
+    },
     getFilms: (type) => {
         let url = type === 1 ? url1 : url2;
         return axios.get(url, {
@@ -22,6 +35,7 @@ export default {
             console.log(error)
         })
     },
+    
     getDetail:(id)=>{
         let url = `${url3}${id}`;
         return axios.get(url, {

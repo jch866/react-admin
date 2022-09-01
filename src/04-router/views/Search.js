@@ -1,7 +1,10 @@
 import React, { useEffect, useState, useMemo } from 'react'
 import storeObj from '../redux/store';
+import { Button, SearchBar, Space, Toast } from 'antd-mobile'
+import { SearchOutline, MoreOutline, LeftOutline } from 'antd-mobile-icons'
+
 import { cinemachange } from '../redux/actionCreater/CinemaActionCreate';
-const {store} = storeObj
+const { store } = storeObj
 export default function Cinema(props) {
     // console.log(store.getState().CityReducer);
     let [list, setlist] = useState(store.getState().CinemaListReducer.list);
@@ -16,7 +19,7 @@ export default function Cinema(props) {
         }
         //订阅
         let unsubscribe = store.subscribe(() => {
-           //console.log('cinema subscribe');
+            //console.log('cinema subscribe');
             setlist(store.getState().CinemaListReducer.list)
         })
         return () => {
@@ -31,11 +34,22 @@ export default function Cinema(props) {
     }, [list, mytext])
     return (
         <div>
-            <button
+            {/* <button
                 onClick={() => {
                     props.history.goBack();
-                }}>返回</button>
-            <input type="text" onInput={(e) => { setMytext(e.target.value) }} value={mytext} />
+                }}>返回</button> */}
+            {/* <Space> */}
+                <LeftOutline onClick={()=>props.history.goBack()}/>
+                <SearchBar placeholder='请输入内容' style={{
+                    '--border-radius': '100px',
+                    '--background': '#ffffff',
+                    '--height': '32px',
+                    '--padding-left': '12px',
+                }} onChange={(value) => {
+                    setMytext(value)
+                }} value={mytext} />
+            {/* </Space> */}
+            {/* <input type="text" onInput={(e) => { setMytext(e.target.value) }} value={mytext} /> */}
             <ul className="cinemaList">
                 {
                     getCinemalist.map(item => {

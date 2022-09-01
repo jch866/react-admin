@@ -5,20 +5,11 @@
 // console.log("hello world kerwin")
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import  storeObj from "./04-router/redux/store"
-import App from './04-router/App'
-import { PersistGate } from 'redux-persist/integration/react'
-
-const {store,persistor} = storeObj;
- 
+import App from './05-antd/05-layout-table'
+import 'antd/dist/antd.css'
 ReactDOM.render(
     // <React.StrictMode>
-    <Provider store={store}>
-        <PersistGate loading={null} persistor={persistor}>
             <App/>
-        </PersistGate>
-    </Provider>
     // </React.StrictMode>
     ,document.getElementById("root"))
 
