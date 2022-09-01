@@ -74,3 +74,21 @@ onChange = {(e)=>{this.setState({username:e.target.value})}}
 dom渲染之前返回一个值，作为componentDidUpdate的第三个参数。
 
 // https://www.swiper.com.cn/ swiper官网
+
+
+Immutable.js 的几种数据类型
+List: 有序索引集，类似JavaScript中的Array。
+Map: 无序索引集，类似JavaScript中的Object。
+将一个js数据转换为Immutable类型的数据
+用法：fromJS(value, converter)
+const obj = Immutable.fromJS({a:'123',b:'234'},function (key, value, path) {
+        console.log(key, value, path)
+        return isIndexed(value) ? value.toList() : value.toOrderedMap())
+    })
+将一个Immutable数据转换为JS类型的数据
+用法：value.toJS()
+-----------------------
+immer.js
+比起Facebook亲自打造的immutable.js，immer.js比immutable.js体积更小，不需要去记immutable.js里像Collection、List、Map、Set、Record这样的数据结构，使用的时候还需要toJS()转换成数组和对象才能正常使用。
+
+ 

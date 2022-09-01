@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import store from '../redux/store';
+// import store from '../redux/store';
+import store from "../mobx/store"
 import { connect } from 'react-redux'
 import { show, hide } from "./../redux/actionCreater/TabbarActionCreater"
 import request from './../../request';
@@ -14,6 +15,7 @@ function Detail(props) {
     useEffect(() => {
         console.log('详情detail create');
         hide();
+        store.isTabbarShow = false;
         // store.dispatch(hide())//发布
         getDetail(id).then(res => {
             if (res.status === 0) {
@@ -22,6 +24,7 @@ function Detail(props) {
         })
         return () => {
             console.log('详情detail destory');
+            store.isTabbarShow = true;
             // store.dispatch(show())
             show();
         }
