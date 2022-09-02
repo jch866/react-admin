@@ -19,13 +19,13 @@ function Cinema(props) {
       //store.dispatch(cinemachange())
       // cinemachange()
     }
-    let unsubscribe = autorun(()=>{
-      console.log(store.list)
-      setlist(store.list)
-    })
-    return ()=>{
-      unsubscribe()
-    }
+    // let unsubscribe = autorun(()=>{
+    //   console.log(store.list)
+    //   setlist(store.list)
+    // })
+    // return ()=>{
+    //   unsubscribe()
+    // }
     // else {
     //   console.log('store 缓存')
     // }
