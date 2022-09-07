@@ -1,4 +1,5 @@
 cd sites/admin && npm start
+npx create-react-app projectname
 rfc  rcc 创建文件结构 快捷方式
 重新学习 react 查漏补缺
 jsx中：
@@ -90,5 +91,39 @@ const obj = Immutable.fromJS({a:'123',b:'234'},function (key, value, path) {
 -----------------------
 immer.js
 比起Facebook亲自打造的immutable.js，immer.js比immutable.js体积更小，不需要去记immutable.js里像Collection、List、Map、Set、Record这样的数据结构，使用的时候还需要toJS()转换成数组和对象才能正常使用。
+---------------------------------------------------------------------
+ p151 课程补充  router v6    src-routerV6
+ "react-router-dom": "^6.3.0",
+ router v5  v6 区别
+1.文件大小更精简
+2.<Route>  path与当前页面的URL匹配； 新增 element，用于决定路由匹配时渲染哪个组件 代替v5的component和 render
+3.<Routes>代替了<Switch>
+4.<Outlet></Outlet>让嵌套路由更简单，类似vue中的<router-view></router-view>
+5.useNavigate代替了useHistory
+6.移除了<NavLink/>中的activeClassName和activeStyle
+7.钩子useRoutes代替react-router-config
 
- 
+
+声明式  <a href=''>
+编程式  location.href = ''
+
+activeClassname  取消
+
+<outlet>来加载子路由
+
+useNavigate来自定义 Redirect
+ 1. Navigate重定向
+ 2.自定义 Redirect  重定向
+
+路由模式： BrowserRouter  HashRouter
+BrowserRouter 会向后端发请求
+
+try_files $uri $uri/ /index.html;
+try_files -尝试访问对应的资源，在第一个资源访问不到时，访问第二个资源，以次向后
+$uri Nginx地址变量，即为访问的地址若访问url为 http://www.xxx.com/index.html 则 $uri 为 /index.html
+$uri/ 表示一个目录，请求访问的目录，Nginx try_files可自行判断访问目的的类型 是为文件还是目录
+若访问url为 http://www.xxx.com/user/class/ 则 $uri/ 为 /user/class/
+所以以上配置的规则为 当 $uri 和 $uri/ 均不是对应资源时 则返回 /index.html 页面
+
+react 18  封装WithRouter报错
+--------------------------------------------------------------------------------------------
