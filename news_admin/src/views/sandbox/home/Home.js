@@ -9,7 +9,7 @@ export default function Home() {
     })
   }
   const getDate = ()=>{
-    // _expand
+    // _expand 类似联表查询
     axios.get('http://localhost:8000/comments?_expand=post').then(res=>{
       console.log(res.data)
     })
