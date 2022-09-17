@@ -1,0 +1,8 @@
+.active {
+    display: none;
+}
+
+.inputArea {
+    padding-top: 20px;
+    padding-right: 50px;
+}
