@@ -1,6 +1,7 @@
 import React, { forwardRef, useEffect, useState } from 'react'
 import { Input,Form, Select } from 'antd';
 const { Option } = Select;
+
 //forwardRef   ref透传 主要是为了传值
 const Userform = forwardRef((props, ref) => {
     const {regionList,roleList} = props;
@@ -11,6 +12,46 @@ const Userform = forwardRef((props, ref) => {
         console.log('userform effect')
         setIsDisabled(props.isUpdateDisabled)
     },[props.isUpdateDisabled])
+    const userinfo = JSON.parse(localStorage.getItem('token'));
+    const { roleId,region} = userinfo;
+    const rolemap = {
+        '1':'superadmin',
+        '2':'admin',
+        '3':'editor'
+      }
+
+    const checkRegionDisabled = (item)=>{
+        if(props.isUpdate){//edit
+             if(rolemap[roleId]==='superadmin'){
+                return false
+             }else{
+                return true
+             }
+        }else{ // add
+            if(rolemap[roleId]==='superadmin'){
+                return false
+             }else{
+                return item.value!==region
+             }
+        }
+       
+    }
+    const checkRoleDisabled = (id)=>{
+        if(props.isUpdate){//edit
+             if(rolemap[roleId]==='superadmin'){
+                return false
+             }else{
+                return true
+             }
+        }else{ // add
+            if(rolemap[roleId]==='superadmin'){
+                return false
+             }else{
+                return rolemap[id]!=='editor'
+             }
+        }
+       
+    }
     return (
         <Form
             ref={ref}
@@ -24,46 +65,32 @@ const Userform = forwardRef((props, ref) => {
             <Form.Item
                 name="username"
                 label="用户名"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input the title of collection!',
-                    },
-                ]}
+                rules={[{required: true,message: 'Please input!',}]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
                 name="password"
                 label="密码"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input the title of collection!',
-                    },
-                ]}
+                rules={[{required: true,message: 'Please input!',}]}
             >
                 <Input />
             </Form.Item>
             <Form.Item
                 name="region"
                 label="区域"
-                rules={isDisabled?[]:[
-                    {
-                        required: true,
-                        message: 'Please input the title of collection!',
-                    },
-                ]}
+                rules={isDisabled?[]:[{required: true, message: 'Please input!',}]}
             >
                 <Select
-                    placeholder="Select a option and change input text above"
+                    placeholder=""
                     onChange={() => { }}
-                    allowClear
                     disabled = {isDisabled}
                 >{
-                        regionList.map(item => {
-                            return <Option key={item.id} value={item.value}>{item.title}</Option>
-                        })
+                        regionList.map(item =><Option 
+                            key={item.id} 
+                            value={item.value} 
+                            disabled={checkRegionDisabled(item)}
+                            >{item.title}</Option>)
                     }
 
                 </Select>
@@ -71,12 +98,7 @@ const Userform = forwardRef((props, ref) => {
             <Form.Item
                 name="roleId"
                 label="角色"
-                rules={[
-                    {
-                        required: true,
-                        message: 'Please input the title of collection!',
-                    },
-                ]}
+                rules={[{required: true,message: 'Please input!',}]}
             >
                 <Select
                     placeholder="Select a option and change input text above"
@@ -92,7 +114,7 @@ const Userform = forwardRef((props, ref) => {
                 >
                     {
                         roleList.map(({ id, roleType, roleName }) => {
-                            return <Option key={id} value={roleType}>{roleName}</Option>
+                            return <Option key={id} value={roleType} disabled={checkRoleDisabled(id)}>{roleName}</Option>
                         })
                     }
                 </Select>

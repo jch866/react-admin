@@ -91,3 +91,7 @@ axios.get  axios.post   axios.patch   axios.put axios.delete
 json-server 详解 https://www.cnblogs.com/hyt09/p/15740690.html
 
 https://gitee.com/liu-gongmin/react-new-app/blob/master/db.json
+
+1.路由拦截问题
+2.手动del token 报错
+3.优化userlist编辑 添加表单用同一个

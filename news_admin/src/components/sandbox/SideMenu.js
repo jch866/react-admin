@@ -15,16 +15,20 @@ const { Header, Sider, Content } = Layout;
 const getRigths = () => {
   return axios.get('http://localhost:8000/rights?_embed=children')
 }
+const userinfo = JSON.parse(localStorage.getItem('token'));
+const { role: { rights } } = userinfo;
 const replaceTitleToLabel = (arr) => {
   let newarr = arr.filter(item => {
-    return item.pagepermisson
+    return item.pagepermisson ;
   })
   return newarr.map((item, index) => {
     if (item.rightId) {
       item.rightid = item.rightId;
       delete item.rightId // rightId react会报错
     }
-    if (item.pagepermisson && item.pagepermisson === 1) {
+    //权限列表还必须满足在后端返回的数据中
+    if (item.pagepermisson && item.pagepermisson === 1 &&  rights.includes(item.key)) {
+    // if (item.pagepermisson && item.pagepermisson === 1  ) {
       if (item.children?.length > 0) {
         item.label = item.title;
         delete item.title;
@@ -44,7 +48,7 @@ const replaceTitleToLabel = (arr) => {
 export default function SideMenu() {
   const navigate = useNavigate();
   let {pathname} = useLocation();
-
+  
   let openkey = `/${pathname.split('/')[1]}`;
   // console.log(openkey)
   const [collapsed, setCollapsed] = useState(false);

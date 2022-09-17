@@ -9,23 +9,34 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { Layout, Dropdown, Menu, Avatar } from 'antd';
+import { useNavigate } from 'react-router-dom';
+
 const { Header, Sider, Content } = Layout;
-const menu = (
-  <Menu
-    items={[
-      {
-        key: '1',
-        label: (<span>超级管理员</span>),
-      },
-      {
-        key: '2',
-        label: (<span>退出</span>)
-      }
-    ]}
-  />
-);
+
 export default function TopHeader() {
+  const navigate = useNavigate();
   const [collapsed, setCollapsed] = useState(false);
+  const loginOut = () => {
+    localStorage.removeItem('token')
+    navigate('/login');
+  }
+  const userinfo = JSON.parse(localStorage.getItem('token'));
+  const { role: { roleName }, username } = userinfo;
+  const menu = (
+    <Menu
+      items={[
+        {
+          key: '1',
+          label: (<span>{roleName}</span>),
+        },
+        {
+          key: '2',
+          label: (<span onClick={() => { loginOut() }}>退出</span>)
+        }
+      ]}
+    />
+  );
+
   return (
     <Header
       className="site-layout-background ant-header-myflex"
@@ -44,7 +55,7 @@ export default function TopHeader() {
             onClick: () => setCollapsed(!collapsed),
           })} */}
       <div className='ant-header-mydrop'>
-        <span className='ant-header-mywelcome'>欢迎admin回来!</span>
+        <span className='ant-header-mywelcome'>欢迎<b>{username}</b>回来!</span>
         <Dropdown overlay={menu}>
           <Avatar size="large" icon={<UserOutlined />} />
         </Dropdown>

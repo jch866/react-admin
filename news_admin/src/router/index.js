@@ -8,7 +8,7 @@ import RightList from '../views/sandbox/right-manage/RightList'
 import RoleList from '../views/sandbox/right-manage/RoleList'
 import UserList from '../views/sandbox/user-manage/UserList'
 
-export default function index() {
+export default function Index() {
     const config = [
         {
             path: '/',
@@ -33,24 +33,44 @@ export default function index() {
                 {
                     path: '/right-manage/right/list',
                     element: <RightList />,
+                }, {
+                    path: '*',
+                    element: <Nopermission />,
                 }
-
             ]
         },
         {
             path: '/login',
             element: <Login />,
-        }, {
-            path: '*',
-            element: <Nopermission />,
         }
 
     ]
+
+    // let newconfig = interuptRoute(config,AuthComponent);
+    // // console.log(newconfig);
     const elements = useRoutes(config);
     return (elements)
 }
+//处理路由拦截
+function interuptRoute(lists,authFn){
+    return lists.map(item=>{
+        if(item.children?.length>0){
+            interuptRoute(item.children,authFn);
+            return item;
+        }else{
+            if(item.path === '/login'||item.path === '/'){
+                return item
+            }
+            item.element =  authFn(item.element);
+            return item
+        }
+    })
+}
+
+
 //路由拦截组件封装
-function AuthComponent(props) {
+function AuthComponent(element) {
     const islogin = localStorage.getItem('token');
-    return islogin ? props.children : <Navigate to='/home' />
+    // return islogin ? props.children : <Navigate to='/' />
+    return islogin ? element : <Navigate to='/login' />
 }

@@ -19,6 +19,8 @@ export default function UserList() {
   const showModal = () => {
     setIsModalOpen(true);
   };
+  const userinfo = JSON.parse(localStorage.getItem('token'));
+  const { roleId,region,username } = userinfo;
  
   
   let columns = [
@@ -60,7 +62,6 @@ export default function UserList() {
               <Button danger shape="circle" onClick={() => {
                 confirmHandle(row)
               }} icon={<DeleteOutlined />} disabled={row.default} />
-
               <Button type="primary" shape="circle" onClick={() => {
                 eidtHandle(row);
               }} icon={<EditOutlined />} disabled={row.default} />
@@ -79,8 +80,19 @@ export default function UserList() {
   }
   //多个请求放在一个useEffect中也可以；
   useEffect(() => {
+    const rolemap = {
+      '1':'superadmin',
+      '2':'admin',
+      '3':'editor'
+    }
     axios.get('http://localhost:8000/users?_expand=role').then(res => {
-      setDataSource(res.data)
+      const list =  res.data;
+      //下面的逻辑是后端逻辑，根据权限不同看到的列表也不同
+   
+      const filterlist = rolemap[roleId] ==='superadmin'?list:
+      [...list.filter(item=>item.region===region&&rolemap[roleId] ==='editor')]
+      // ...list.filter(item=>item.username===username), 这个可能会重复
+      setDataSource(filterlist)
     })
     // }, [])
     // useEffect(() => {
@@ -213,7 +225,7 @@ export default function UserList() {
           updateOk()
         }}
       >
-        <Userform ref={updateRef} regionList={regionList} roleList={roleList} isUpdateDisabled = {isUpdateDisabled}></Userform>
+        <Userform ref={updateRef} isUpdate={true} regionList={regionList} roleList={roleList} isUpdateDisabled = {isUpdateDisabled}></Userform>
       </Modal>
     </>
   );
