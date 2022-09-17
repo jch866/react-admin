@@ -12,7 +12,7 @@ export default function Login() {
   const onFinish = (values) => {
     console.log('Received values of form: ', values);
     const {username,password} = values;
-    const url = `http://localhost:8000/users?username=${username}&password=${password}&roleState=true&_expand=role`
+    const url = `/users?username=${username}&password=${password}&roleState=true&_expand=role`
     axios.get(url).then(res=>{
       console.log(res.data);
       if(res.data.length === 0 ){

@@ -13,7 +13,7 @@ const { Header, Sider, Content } = Layout;
 
 
 const getRigths = () => {
-  return axios.get('http://localhost:8000/rights?_embed=children')
+  return axios.get('/rights?_embed=children')
 }
 const userinfo = JSON.parse(localStorage.getItem('token'));
 const { role: { rights } } = userinfo;

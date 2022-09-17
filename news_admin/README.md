@@ -95,3 +95,4 @@ https://gitee.com/liu-gongmin/react-new-app/blob/master/db.json
 1.路由拦截问题
 2.手动del token 报错
 3.优化userlist编辑 添加表单用同一个
+4.根据路由权限显示可点击的路由

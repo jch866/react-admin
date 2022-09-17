@@ -74,7 +74,7 @@ export default function UserList() {
   const switchChange = (row) => {
     row.roleState = !row.roleState;
     setDataSource([...dataSource]);
-    axios.patch(`http://localhost:8000/users/${row.id}`, {
+    axios.patch(`/users/${row.id}`, {
       roleState: row.roleState
     })
   }
@@ -85,7 +85,7 @@ export default function UserList() {
       '2':'admin',
       '3':'editor'
     }
-    axios.get('http://localhost:8000/users?_expand=role').then(res => {
+    axios.get('/users?_expand=role').then(res => {
       const list =  res.data;
       //下面的逻辑是后端逻辑，根据权限不同看到的列表也不同
    
@@ -96,10 +96,10 @@ export default function UserList() {
     })
     // }, [])
     // useEffect(() => {
-    axios.get('http://localhost:8000/regions').then(res => {
+    axios.get('/regions').then(res => {
       setRegionList(res.data)
     })
-    axios.get('http://localhost:8000/roles').then(res => {
+    axios.get('/roles').then(res => {
       setRoleList(res.data)
     })
   }, [])
@@ -121,7 +121,7 @@ export default function UserList() {
   }
   const confirmDel = (row) => {
     setDataSource(dataSource.filter(data => data.id !== row.id));
-    axios.delete(`http://localhost:8000/users/${row.id}`)
+    axios.delete(`/users/${row.id}`)
   }
   const eidtHandle = (row)=>{
     showModal(row)
@@ -154,7 +154,7 @@ export default function UserList() {
                 return item
               }))
               setIsUpdateDisabled(!isUpdateDisabled)//类似刷新，效果欠佳
-              axios.patch(`http://localhost:8000/users/${currentRow.id}`,value)
+              axios.patch(`/users/${currentRow.id}`,value)
             })
             .catch((info) => {
               console.log('Validate Failed:', info);
@@ -187,7 +187,7 @@ export default function UserList() {
               setIsModalOpen(false);
               addRef.current.resetFields();
               //post到后端生成ID，方便更新删除操作；
-              axios.post('http://localhost:8000/users', {
+              axios.post('/users', {
                 ...values,
                 'roleState': true,
                 "default": false

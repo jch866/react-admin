@@ -8,8 +8,8 @@ const {confirm} = Modal;
 export default function RightList() {
   let [dataSource,setDataSource] = useState([])
   useEffect(()=>{
-    axios.get('http://localhost:8000/rights?_embed=children').then(res=>{
-      console.log(res.data);
+    axios.get('/rights?_embed=children').then(res=>{
+      // console.log(res.data);
       let lists = res.data.map(item=>{
         if(item.children?.length===0){
           delete item.children
@@ -76,11 +76,11 @@ export default function RightList() {
     setDataSource([...dataSource])
     if(row.grade == 1){
       
-      axios.patch(`http://localhost:8000/rights/${row.id}`,{
+      axios.patch(`/rights/${row.id}`,{
         pagepermisson:row.pagepermisson
       })
     }else{
-      axios.patch(`http://localhost:8000/children/${row.id}`,{
+      axios.patch(`/children/${row.id}`,{
         pagepermisson:row.pagepermisson
       })
     }
@@ -104,7 +104,7 @@ export default function RightList() {
   const confirmDel = (row)=>{
     if(row.grade == 1){
       setDataSource(dataSource.filter(data=>data.id!==row.id));
-      axios.delete(`http://localhost:8000/rights/${row.id}`)
+      axios.delete(`/rights/${row.id}`)
     }else{
       //根据rightid 确定父级
       let list = dataSource.filter(data=>data.id === row.rightId);
@@ -112,7 +112,7 @@ export default function RightList() {
       list[0].children =  list[0].children.filter(item=>item.id !== row.id);
       console.log(list,dataSource)
       setDataSource([...dataSource])
-      axios.delete(`http://localhost:8000/children/${row.id}`)
+      axios.delete(`/children/${row.id}`)
     }
   }
   return <Table dataSource={dataSource} columns={columns} pagination={{

@@ -31,7 +31,7 @@ export default function RoleList() {
       return item;
     }))
     //后端数据更新
-    axios.patch(`http://localhost:8000/roles/${currentId}`,{
+    axios.patch(`/roles/${currentId}`,{
       rights:currentRights
     })
   };
@@ -74,14 +74,14 @@ export default function RoleList() {
   ];
 
   useEffect(() => {
-    axios.get('http://localhost:8000/roles').then(res => {
-      console.log(res.data);
+    axios.get('/roles').then(res => {
+      // console.log(res.data);
       let lists = res.data;
       setDataSource(lists)
     })
   }, [])
   useEffect(() => {
-    axios.get('http://localhost:8000/rights?_embed=children').then(res => {
+    axios.get('/rights?_embed=children').then(res => {
       setRightList(res.data)
     })
   }, [])
@@ -103,7 +103,7 @@ export default function RoleList() {
   }
   const confirmDel = (row) => {
     setDataSource(dataSource.filter(data => data.id !== row.id));
-    axios.delete(`http://localhost:8000/roles/${row.id}`)
+    axios.delete(`/roles/${row.id}`)
   }
   const onCheck = (checkedKeys) => {
     console.log(checkedKeys)
