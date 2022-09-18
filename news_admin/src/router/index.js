@@ -10,12 +10,14 @@ import UserList from '../views/sandbox/user-manage/UserList'
 import NewsAdd from '../views/news-manage/NewsAdd'
 import NewsCategory from '../views/news-manage/NewsCategory'
 import NewsDraft from '../views/news-manage/NewsDraft'
+import NewsPreview from '../views/news-manage/NewsPreview'
 import Audit from '../views/audit-manage/Audit'
 import AuditList from '../views/audit-manage/AuditList'
 import Unpublished from '../views/publish-manage/Unpublished'
 import Published from '../views/publish-manage/Published'
 import Sunset from '../views/publish-manage/Sunset'
 import axios from 'axios'
+import NewsUpdate from '../views/news-manage/NewsUpdate'
 export default function Index() {
     const [backRouteList, setBackRouteList] = useState([])
     const url1 = '/rights';
@@ -97,6 +99,14 @@ export default function Index() {
                 {
                     path: '/news-manage/category',
                     element: <NewsCategory />,
+                },
+                {
+                    path: '/news-manage/preview/:id',
+                    element: <NewsPreview />,
+                },
+                {
+                    path: '/news-manage/update/:id',
+                    element: <NewsUpdate />,
                 },
                 {
                     path: '/audit-manage/audit',

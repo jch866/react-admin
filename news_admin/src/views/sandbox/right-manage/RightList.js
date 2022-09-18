@@ -115,7 +115,7 @@ export default function RightList() {
       axios.delete(`/children/${row.id}`)
     }
   }
-  return <Table dataSource={dataSource} columns={columns} pagination={{
+  return <Table dataSource={dataSource} columns={columns} rowKey={item=>item.id} pagination={{
     pageSize:5}}/>;
   
 }
