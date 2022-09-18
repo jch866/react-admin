@@ -18,7 +18,7 @@ export default function TopHeader() {
   const [collapsed, setCollapsed] = useState(false);
   const loginOut = () => {
     localStorage.removeItem('token')
-    navigate('/login');
+    navigate('/login',{ replace: true });
   }
   const userinfo = JSON.parse(localStorage.getItem('token'));
   const { role: { roleName }, username } = userinfo;

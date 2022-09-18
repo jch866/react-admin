@@ -11,11 +11,7 @@ import {
 import { useNavigate ,useLocation} from 'react-router-dom';
 const { Header, Sider, Content } = Layout;
 
-
-const getRigths = () => {
-  return axios.get('/rights?_embed=children')
-}
-const userinfo = JSON.parse(localStorage.getItem('token'));
+const userinfo = JSON.parse(localStorage.getItem('token'))||{role:{rights:{}}};
 const { role: { rights } } = userinfo;
 const replaceTitleToLabel = (arr) => {
   let newarr = arr.filter(item => {
@@ -57,7 +53,7 @@ export default function SideMenu() {
     navigate(key)
   }
   useEffect(() => {
-    getRigths().then(res => {
+    axios.get('/rights?_embed=children').then(res => {
       // console.log(res.data);//原始路由数据
       let newItems = replaceTitleToLabel(res.data);
       // console.log(newItems) //处理过的路由数据

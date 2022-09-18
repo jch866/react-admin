@@ -96,3 +96,4 @@ https://gitee.com/liu-gongmin/react-new-app/blob/master/db.json
 2.手动del token 报错
 3.优化userlist编辑 添加表单用同一个
 4.根据路由权限显示可点击的路由
+5.NewsPublish 通用组件把 button 属性改成传  type 123试试

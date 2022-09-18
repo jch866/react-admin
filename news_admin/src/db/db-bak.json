@@ -93,6 +93,7 @@
                 "/news-manage/update/:id",
                 "/news-manage/preview/:id",
                 "/news-manage/draft",
+                "/news-manage/category",
                 "/audit-manage",
                 "/audit-manage/audit",
                 "/audit-manage/list",
@@ -263,6 +264,13 @@
             "key": "/news-manage/draft",
             "pagepermisson": 1,
             "grade": 2
+        }, {
+            "id": 35,
+            "title": "新闻分类",
+            "rightId": 14,
+            "key": "/news-manage/category",
+            "grade": 2,
+            "pagepermisson": 1
         },
         {
             "id": 22,

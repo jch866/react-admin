@@ -27,7 +27,7 @@ export default function Index() {
             setBackRouteList([...res[0].data, ...res[1].data])
         })
     }, [])
-    const { role: { rights } } = JSON.parse(localStorage.getItem('token'))
+    // const { role: { rights } } = JSON.parse(localStorage.getItem('token'))
     let localRouteMap = {
         "/home": <Home />,
         // "/user-manage": "",
@@ -59,14 +59,12 @@ export default function Index() {
     const checkRoute = (item) => {
         return localRouteMap(item.key) && item.pagepermission
     }
-    const checkUserPermission = (item) => {
-
-    }
-
+    const checkUserPermission = (item) => {}
+    const islogin = localStorage.getItem('token');
     const config = [
         {
             path: '/',
-            element: <NewsSandbox />,
+            element: islogin?<NewsSandbox />:<Navigate to='/login' />,
             children: [
                 {
                     path: '/',
@@ -140,10 +138,8 @@ export default function Index() {
         }
 
     ]
-
-    // let newconfig = interuptRoute(config,AuthComponent);
-    // // console.log(newconfig);
     const elements = useRoutes(config);
+
     return (elements)
 }
 //处理路由拦截
@@ -161,11 +157,9 @@ function interuptRoute(lists, authFn) {
         }
     })
 }
-
-
 //路由拦截组件封装
-function AuthComponent(element) {
+function AuthComponent(props) {
     const islogin = localStorage.getItem('token');
     // return islogin ? props.children : <Navigate to='/' />
-    return islogin ? element : <Navigate to='/login' />
+    return islogin ? props.children : <Navigate to='/login' />
 }
