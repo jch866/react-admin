@@ -10,12 +10,14 @@ import {
 } from '@ant-design/icons';
 import { Layout, Dropdown, Menu, Avatar } from 'antd';
 import { useNavigate } from 'react-router-dom';
-
+import {connect} from 'react-redux'
 const { Header, Sider, Content } = Layout;
 
-export default function TopHeader() {
+function TopHeader(props) {
+  console.log(props)
+  let {isCollapsed,changeCollapsed} = props;
   const navigate = useNavigate();
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
   const loginOut = () => {
     localStorage.removeItem('token')
     navigate('/login',{ replace: true });
@@ -36,19 +38,18 @@ export default function TopHeader() {
       ]}
     />
   );
-
+  const collapsedHandle = ()=>{
+    changeCollapsed();//dispatch {type:'change-collapsed'}
+  }
   return (
     <Header
       className="site-layout-background ant-header-myflex"
-      style={{
-        padding: 0,
-      }}
-    >
+      style={{padding: 0}}>
       {/* 另一个写法 */}
       {
-        collapsed ?
-          <MenuUnfoldOutlined className='trigger' onClick={() => { setCollapsed(!collapsed) }} /> :
-          <MenuFoldOutlined className='trigger' onClick={() => { setCollapsed(!collapsed) }} />
+        isCollapsed ?
+          <MenuUnfoldOutlined className='trigger' onClick={() => { collapsedHandle() }} /> :
+          <MenuFoldOutlined className='trigger' onClick={() => { collapsedHandle() }} />
       }
       {/* {React.createElement(collapsed ? MenuUnfoldOutlined : MenuFoldOutlined, {
             className: 'trigger',
@@ -64,3 +65,17 @@ export default function TopHeader() {
 
   )
 }
+
+const mapStateToProps=(state)=>{
+  return {
+    isCollapsed:state.CollapsedReducer.isCollapsed
+  } 
+}
+const mapDispatchToProps = {
+changeCollapsed(){
+  return {
+    type:'change-collapsed'
+  }
+}
+}
+export default connect(mapStateToProps,mapDispatchToProps)(TopHeader)

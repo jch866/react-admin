@@ -9,6 +9,7 @@ import {
   VideoCameraOutlined,
 } from '@ant-design/icons';
 import { useNavigate ,useLocation} from 'react-router-dom';
+import {connect} from 'react-redux'
 const { Header, Sider, Content } = Layout;
 
 const userinfo = JSON.parse(localStorage.getItem('token'))||{role:{rights:{}}};
@@ -41,13 +42,14 @@ const replaceTitleToLabel = (arr) => {
 
 
 }
-export default function SideMenu() {
+function SideMenu(props) {
+
   const navigate = useNavigate();
   let {pathname} = useLocation();
-  
+  let {isCollapsed} = props;
   let openkey = `/${pathname.split('/')[1]}`;
   // console.log(openkey)
-  const [collapsed, setCollapsed] = useState(false);
+  // const [collapsed, setCollapsed] = useState(false);
   const [itemsList, setItemsList] = useState([]);
   const itemClickHandle = ({ key }) => {
     navigate(key)
@@ -61,7 +63,7 @@ export default function SideMenu() {
     })
   }, [])
   return (
-    <Sider trigger={null} collapsible collapsed={collapsed}>
+    <Sider trigger={null} collapsible collapsed={isCollapsed}>
       <div className='sidemenu-wrap'>
         <div className="logo">全球新闻发布系统</div>
         <div className='sidemenu-menus'>
@@ -81,3 +83,11 @@ export default function SideMenu() {
     </Sider>
   )
 }
+
+//topheader中操作 isCollapsed  这里来取
+const mapStateToProps = (state)=>{
+  return {
+    isCollapsed:state.CollapsedReducer.isCollapsed
+  }
+}
+export default connect(mapStateToProps)(SideMenu)
