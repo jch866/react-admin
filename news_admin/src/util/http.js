@@ -34,3 +34,6 @@ axios.interceptors.response.use(function (response) {
     })
     return Promise.reject(error);
   });
+// 移除拦截器，可以这样：
+// const myInterceptor = axios.interceptors.request.use(function () {/*...*/});
+// axios.interceptors.request.eject(myInterceptor);
