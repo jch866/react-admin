@@ -1,5 +1,5 @@
 import axios from "axios";
-import store from '../../src/redux/store'
+import {store} from '../../src/redux/store'
 axios.defaults.baseURL = 'http://localhost:8000';
 // 添加请求拦截器
 axios.interceptors.request.use(function (config) {

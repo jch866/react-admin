@@ -5,8 +5,9 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { HashRouter } from 'react-router-dom';
 import Myroutes from './router/index'
-import store from './redux/store';
+import {store,persistor} from './redux/store';
 import { Provider } from 'react-redux';
+import {PersistGate} from 'redux-persist/integration/react'
 import './util/http'
 //https://i.maoyan.com/
 const url = `ajax/comingList?ci=107&limit=10&movieIds=&token=&optimus_uuid=F10E4F2023AB11ED8AC767432FCE8EC3E6056F125F624C23AB85F1664E9C6576&optimus_risk_level=71&optimus_code=10`;
@@ -24,10 +25,12 @@ function App() {
   return (
     <>
       <Provider store={store}>
+      <PersistGate loading={null} persistor={persistor}>
         <HashRouter>
           <Myroutes />
           {/* <Child /> */}
         </HashRouter>
+        </PersistGate>
       </Provider>
     </>
   );
