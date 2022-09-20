@@ -30,7 +30,7 @@ export default function Home() {
   useEffect(() => {
     axios.get(`/news?publishState=2&_expand=category`)
       .then(res => {
-        console.log(res.data);
+        // console.log(res.data);
         let datas = _.groupBy(res.data, item => item.category.title);
         renderBar(datas)
         setAllList(res.data)

@@ -18,6 +18,8 @@ import Published from '../views/publish-manage/Published'
 import Sunset from '../views/publish-manage/Sunset'
 import axios from 'axios'
 import NewsUpdate from '../views/news-manage/NewsUpdate'
+import News from '../views/news/News'
+import Detail from '../views/news/Detail'
 export default function Index() {
     const [backRouteList, setBackRouteList] = useState([])
     const url1 = '/rights';
@@ -131,6 +133,14 @@ export default function Index() {
                     element: <Nopermission />,
                 }
             ]
+        },
+        {
+            path: '/news',
+            element: <News />,
+        },
+        {
+            path: '/detail/:id',
+            element: <Detail />,
         },
         {
             path: '/login',
