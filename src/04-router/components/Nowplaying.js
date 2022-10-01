@@ -1,8 +1,8 @@
-import React, { useEffect, useState,useRef } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { NavLink, useHistory, withRouter } from 'react-router-dom';
 import request from "./../../request";
-import { List ,Image,InfiniteScroll } from "antd-mobile"
-const { getFilms,getFilms_more } = request;
+import { List, Image, InfiniteScroll } from "antd-mobile"
+const { getFilms, getFilms_more } = request;
 //Nowplaying 是写在路由中的，它的父级是路由组件 非Films组件
 export default function Nowplaying(props) {
 
@@ -24,18 +24,20 @@ export default function Nowplaying(props) {
     //3.state 传参  query  state 也可以改成abc之类的，但后面要接受也要用props.location.abc
     //Uhistory.push({pathname:'/detail',state:{id}})
   }
-  let [hasMore,sethasMore] = useState(true);
+  let [hasMore, sethasMore] = useState(true);
   const count = useRef(0);
-  const loadMore = ()=>{
+  const loadMore = () => {
     count.current++;
     sethasMore(false) // 避免频繁请求
     getFilms_more(count.current).then(res => {
-      setList([...list,...res.data.films]);
-      sethasMore(res.data.films.length>0)
+      setList([...list, ...res.data.films]);
+      sethasMore(res.data.films.length > 0)
     })
   }
   return (
     <>
+      <div className='my-less'>less style</div>
+      <div className='my-sass'>sass style</div>
       <List>
         {
           list.map((item, index) => {
@@ -49,7 +51,7 @@ export default function Nowplaying(props) {
             // return <WithFilmItem key={item.filmId} {...item}  />
             //description ReactNode
             return (
-              <List.Item key={item.filmId} onClick={()=>{
+              <List.Item key={item.filmId} onClick={() => {
                 props.history.push(`/detail/${item.filmId}`)
               }} prefix={
                 <Image
@@ -61,7 +63,7 @@ export default function Nowplaying(props) {
                 />
               } arrow={false} description={(
                 <>
-                  {item.grade?<div>观众评分:{item.grade}</div>:<div style={{visibility:'hidden'}}>观众评分</div>}
+                  {item.grade ? <div>观众评分:{item.grade}</div> : <div style={{ visibility: 'hidden' }}>观众评分</div>}
                   <div>{item.category}</div>
                   <div>{item.nation}</div>
                 </>

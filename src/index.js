@@ -9,7 +9,8 @@ import { Provider } from 'react-redux'
 import  storeObj from "./04-router/redux/store"
 import App from './04-router/App'
 import { PersistGate } from 'redux-persist/integration/react'
-
+import './index2.less'
+import './index1.scss'
 const {store,persistor} = storeObj;
  
 ReactDOM.render(
