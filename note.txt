@@ -127,3 +127,10 @@ $uri/ 表示一个目录，请求访问的目录，Nginx try_files可自行判�
 
 react 18  封装WithRouter报错
 --------------------------------------------------------------------------------------------
+React.useEffect模拟生命周期
+模拟componentDidMount: 第二个参数为空数组，可以模拟compomentDidMount:useEffect(()=>{console.log('第一次渲染时调用')},[])
+模拟componentDidUpdate: 没有第二个参数代表监听所有属性的更新useEffect(()=>{console.log('任意属性该改变')}) 
+:监听多个属性的变化需要将属性作为数组传入第二个参数。useEffect(()=>{console.log('n变了')},[n,m]) 
+模拟componentWillUnmount: 通常，组件卸载时需要清除 effect 创建的诸如订阅或计时器 ID 等资源
+JS中的有序Map与无序Object
+在JS中使用Map来存储数据如果不涉及枚举或者没有顺序要求使用Object进行实现，如果存在顺序要求使用有序Map进行实现。
