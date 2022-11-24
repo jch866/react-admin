@@ -25,7 +25,67 @@ a = [1,2,3] b= [...a] ||  b = a.slice() || b = a.concat(); //避免引用赋值
 
 富文本创建的内容  https://www.bilibili.com/video/BV1dP4y1c7qd?p=20&spm_id_from=pageDriver
 (<div  dangerouslySetInnerHTML={{__html: this.state.content}} /> )// 注意这里是两个下下划线 __html
+---------------------------------------------------------------------------------
+1. String Refs
+<input ref="textInput" value='value' />
+2. 回调 Refs 
+ref 传入一个回调函数
+该函数中接受 React 组件实例或 DOM 元素作为参数
+我们通常会将其存储到具体的实例属性（this.textInput）
+<input ref={(element) => {this.textInput = element;}} value='value' />
+3. createRef
+this.textInputRef = React.createRef();
+<input ref={this.textInputRef} value='value' />
+// createRef 简化后
+export function createRef() {
+  const refObject = {
+    current: null,
+  };
+  return refObject;
+}在渲染的过程中，refObject.current 会被赋予具体的值。
+// forwardRef
+export function forwardRef(render) {
+  const elementType = {
+    $$typeof: REACT_FORWARD_REF_TYPE,
+    render,
+  };
 
+  return elementType;
+}
+但是要注意这里的 $$typeof，尽管这里是 REACT_FORWARD_REF_TYPE，但最终创建的 React 元素的 $$typeof 依然为 REACT_ELEMENT_TYPE。
+// 最终返回的对象为：
+const result = {
+  $$typeof: REACT_ELEMENT_TYPE,
+  type: {
+    $$typeof: REACT_FORWARD_REF_TYPE,
+    render,
+  }
+}
+---------------------------------------------------------------------------------
+// 错误代码
+const [user,setUser] = useState({name:'lifa', age: 18})
+const onClick = () => {
+  // 在原来的引用地址上修改name属性，不会起作用
+  user.name = 'jack'
+  setUser(user)
+}
+多次对useState进行操作的话推荐使用函数
+useState可以接受函数
+const [state, setState] = useState(()=>{
+  return initialState
+})
+const [n,setN] = useState(1)
+const onClick = () => {
+  setN(n+1)
+  setN(n+1)
+}
+上面我们在点击事件里执行了两次修改n，每次让他加一，可实际上他只会变一次，因为n本身是不会变的，而是每次生成一个新的n，所以上面结果是2而不是3，如果想要它加2的话就要用函数
+setN(i=>i+1)
+setN(i=>i+1)
+
+useReducer用来践行Flux/Redux的思想,总的来说useRducer是useState的复杂版
+const [state, dispatch] = useReducer(reducer, intialState)
+---------------------------------------------------------------------------------
 setState同步和异步讲解
 setState有第二个参数，它是一个回调函数 状态和DOM更新完成
 setState在一个同步的逻辑中 是个异步更新状态 更新真实DOM
@@ -144,4 +204,4 @@ Node Sass version 7.0.3 is incompatible with ^4.0.0 || ^5.0.0 || ^6.0.0.
 2.问题解决:1.npm uninstall node-sass 2.npm install sass -D;
 --------------------------------------------------------------------------------------------
 
-
+ 

@@ -108,3 +108,12 @@ export default class App extends Component {
 // 2.App变成供应商 <GlobalContext.Provider value={object}>
 // 3.子组件成消费者 <GlobalContext.Consumer>   里面是一个回调函数，同时把值传进来 (value)=>{}
 
+//Provider 里面可以提供属性也可以提供方法 
+// createContext 创建多个
+// const firstContext = createContext(); //firstContext自定义名称
+// const secondContext = createContext(); //secondContext自定义名称
+
+//自定义的context
+//contextType 可以简化 context 的使用，不使用 consumer 也可以共享变量
+//申明静态变量、contextType 将 context 直接赋值于 contextType
+//static contextType = ThemeContext

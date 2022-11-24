@@ -43,3 +43,8 @@ class Child extends Component {
         clearInterval(this.timer)
     }
   }
+//will M RP U
+// componentWillMount、
+// componentWillReceiveProps、
+// componentWillUpdate，
+// 三个方法都废弃，用getDerivedStateFromProps来替代

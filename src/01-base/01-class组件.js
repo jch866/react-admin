@@ -24,9 +24,10 @@
 //  var obj = new ChildTest()
 //  obj.testa()
 //  console.log(obj.a)
-
+// rrc   rcc  scu（shouldComponentUpdate）
 import React from 'react'
 class KerwinApp extends React.Component{
+
     render(){
         return (
             <section>
@@ -44,3 +45,4 @@ class KerwinApp extends React.Component{
 
 
 export default KerwinApp
+

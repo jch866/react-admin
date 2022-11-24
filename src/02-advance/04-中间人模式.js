@@ -62,6 +62,7 @@ export default class App extends Component {
         return (
             <div>
                 {/* {this.state.info} */}
+                {/* synopsis是电影详情 */}
                 {
                     this.state.list.map((item) => {
                         // return <FilmItem key={filmId} name={name} poster={poster} grade={grade} />

@@ -37,11 +37,12 @@ export default class App extends Component {
         return (
             <div>
                 <Navbar>
-                <button onClick={()=>{
-                   this.setState({
-                    isShow:!this.state.isShow
-                   })
-                }}>hide</button>
+                    {/* {Navbar 中 this.props.children 内容} */}
+                    <button onClick={()=>{
+                    this.setState({
+                        isShow:!this.state.isShow
+                    })
+                    }}>hide</button>
                 </Navbar>
                {
                  this.state.isShow && <Sidebar />

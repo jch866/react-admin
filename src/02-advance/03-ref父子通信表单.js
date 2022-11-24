@@ -25,7 +25,6 @@ class Field extends Component {
                     value:e.target.value
                    })
                 }} value={this.state.value}/>
-               
             </div>
         )
     }
