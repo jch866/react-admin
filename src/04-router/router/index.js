@@ -11,6 +11,7 @@ import Login from './../views/Login';
 import NotFound from './../views/NotFound'
 import City from '../views/City';
 import Search from '../views/Search';
+import "./demo"
 
 function isAuth(){
     return window.localStorage.getItem('token')
