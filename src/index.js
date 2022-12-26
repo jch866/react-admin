@@ -5,31 +5,19 @@
 // console.log("hello world kerwin")
 import React from 'react'
 import ReactDOM from 'react-dom'
-
-// 配置使用  mobx-react  react-redux 各自有Provider store
-import { Provider } from 'mobx-react'
-import store from './04-router/mobx/store'
-// import { Provider } from 'react-redux'
-// import  storeObj from "./04-router/redux/store"
-import App from './04-router/App'
-import { PersistGate } from 'redux-persist/integration/react'
-// const {store,persistor} = storeObj;
- 
+import App from './06-Mobx/App';
+import RootStore from './06-Mobx/stores';
+import { Provider } from 'mobx-react';
+// import App from "./04-router/App"
+import { configure } from "mobx"
+configure({enforceActions: true})
 ReactDOM.render(
-    // <React.StrictMode>
-    <Provider store={store}>
-        {/* <PersistGate loading={null} persistor={persistor}> */}
+    <Provider {...new RootStore()}>
             <App/>
-        {/* </PersistGate> */}
     </Provider>
-    // </React.StrictMode>
     ,document.getElementById("root"))
 
 
-// ReactDOM.render(React.createElement("div",{
-//     id:"aaa",
-//     class:"bbb"
-// },"111111111"),document.getElementById("root"))
 
 /*
  jsx == js+xml

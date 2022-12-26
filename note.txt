@@ -72,9 +72,8 @@ onChange = {(e)=>{this.setState({username:e.target.value})}}
 返回一个对象作为新的state，返回null则说明不需要在这里更新state
  (2) getSnapshotBeforeUpdate 取代了 componetWillUpdate ,触发时间为update发生的时候，在render之后
 dom渲染之前返回一个值，作为componentDidUpdate的第三个参数。
-
-// https://www.swiper.com.cn/ swiper官网
-
+memo的作用是为了减少组件重新render过程中导致组件的重复渲染，而得到性能上的提升。
+但是 Context 发生的变化是无法通过 memo 进行优化的，这个大家需要知道的一个点。
 
 Immutable.js 的几种数据类型
 List: 有序索引集，类似JavaScript中的Array。
@@ -91,4 +90,26 @@ const obj = Immutable.fromJS({a:'123',b:'234'},function (key, value, path) {
 immer.js
 比起Facebook亲自打造的immutable.js，immer.js比immutable.js体积更小，不需要去记immutable.js里像Collection、List、Map、Set、Record这样的数据结构，使用的时候还需要toJS()转换成数组和对象才能正常使用。
 
- 
+useRef
+useSearchParams
+ts  as const 
+why did you render
+codesandbox.io
+尽量避免把对象类型放在依赖项里
+无限循环渲染问题  useMemo useCallback
+基本类型和组件状态可以放在依赖里；非组件状态的对象绝不可以放在依赖里
+//eslint-disable-next-line  react-hooks/exhaustive-deps
+JSX.Element
+组件组合 component composition
+
+-----------------------
+React 系列教程之 Mobx  
+https://www.bilibili.com/video/BV1tL4y1h7ND/ 
+解决不能重新render方法：
+1.@observer要放在最里层componentDidMount 触发后才能重新render
+2.(目前没用到这个方法)-注入到组件中并调用action时，数据能发生改变，但页面始终不会重新渲染，找遍了全网，最后发现时mobx在6以后的版本，
+必须在构造函数中调用方法makeObservable()或者makeAutoObservable()。调用后者的时候可以不用再为字段和方法添加@observable和@action。
+
+装饰器就是个语法糖……实际上用装饰器和 observer(component) 是一样的效果
+@computed get cartProducts 计算属性 不渲染相应的效果后来发现是版本的问题
+在constructor 构造函数中加 makeObservable(this) 这个才解决
