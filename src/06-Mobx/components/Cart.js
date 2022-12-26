@@ -3,11 +3,12 @@ import { observer, inject } from 'mobx-react'
 
 @inject('cartStore')
 @observer
+//2.组件中使用 mobx 容器状态
 class Cart extends Component {
   render() {
-    console.log('cart render')
+    // console.log('cart render')
     const { cartStore } = this.props;
-    console.log(cartStore.cartProducts)
+    // console.log(cartStore.cartProducts)
     return (
       <>
         <div>Cart</div>

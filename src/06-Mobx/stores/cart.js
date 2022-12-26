@@ -47,7 +47,7 @@ class CartStore {
         this.items = items;
     }
     @computed get cartProducts() {
-        console.log('computed')
+        // console.log('computed')
         const { productsStore } = this.rootStore;
         return this.items.map(citem => {
             const prod = productsStore.all.find(pitem => pitem.id === citem.id);
