@@ -113,3 +113,14 @@ https://www.bilibili.com/video/BV1tL4y1h7ND/
 装饰器就是个语法糖……实际上用装饰器和 observer(component) 是一样的效果
 @computed get cartProducts 计算属性 不渲染相应的效果后来发现是版本的问题
 在constructor 构造函数中加 makeObservable(this) 这个才解决
+
+mobx enforceActions 也被称为“严格模式”。
+在严格模式下，不允许在 action 外更改任何状态。 可接收的值:
+“never” (默认): 可以在任意地方修改状态
+“observed”: 在某处观察到的所有状态都需要通过动作进行更改。在正式应用中推荐此严格模式。
+“always”: 状态始终需要通过动作来更新(实际上还包括创建)。
+具体使用：
+import { configure } from 'mobx';
+configure({ enforceActions: 'observed' });
+非严格模式下，store数据操作可以不用runInAction包裹，不推荐；
+严格模式下，异步数据操作需要用runInAction包裹（包含捕获异步错误后的数据操作），推荐。

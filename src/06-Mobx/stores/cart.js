@@ -1,4 +1,4 @@
-import { action, computed, observable, makeObservable } from "mobx";
+import { action, computed, observable, makeObservable, autorun } from "mobx";
 import * as shop from './../api/shop'
 class CartStore {
     //items数据结构{id,quantity：购物车商品数量 }
@@ -72,5 +72,11 @@ class CartStore {
         makeObservable(this);
     }
 }
-
+//这里的autorun可以在foo值更新时重新调用，为什么StoreDemo 不行？
+//因为 StoreDemo 没加 makeObservable
+const cart = new CartStore();
+autorun(()=>{
+    console.log('cart: autorun ', cart.foo)
+})
+cart.foo = 'hello';
 export default CartStore;

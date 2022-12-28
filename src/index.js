@@ -10,7 +10,7 @@ import RootStore from './06-Mobx/stores';
 import { Provider } from 'mobx-react';
 // import App from "./04-router/App"
 import { configure } from "mobx"
-configure({enforceActions: true})
+// configure({enforceActions: true})
 ReactDOM.render(
     <Provider {...new RootStore()}>
             <App/>
