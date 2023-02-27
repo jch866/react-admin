@@ -1,4 +1,4 @@
-import { observable, autorun, makeObservable, computed, configure, runInAction, action, when, reaction } from "mobx";
+import { observable, observe, autorun, makeObservable, computed, configure, runInAction, action, when, reaction } from "mobx";
 // https://zhuanlan.zhihu.com/p/77170757
 configure({
     // enforceActions:'always',
@@ -35,9 +35,25 @@ class StoreDemo {
     @action.bound changeCount() {
         this.count = 500;
     }
+    @observable todos = [];
+    disposers = [];
     constructor() {
         //mobx 6版本加了 makeObservable  autorun才有效果
         makeObservable(this);
+        // 这个可能是用来深层次监听对象属性 ？？
+        observe(this.todos, event => {
+            console.log('store observe',event);
+            console.log('store event.object',event.object);
+            this.disposers.forEach(disposer => disposer());
+            this.disposers = [];
+            for (let todo of event.object) {
+                let disposer = observe(todo, e => {
+                    console.log('store child observe',e)
+                    console.log('store child e.object',e.object)
+                })
+                this.disposers.push(disposer)
+            }
+        })
     }
 }
 //@observable修饰的值才能被autorun监控到
@@ -67,9 +83,13 @@ when(() => {
 reaction(() => {
     //执行一些业务逻辑，返回数据给下一个函数使用
     return store.count
-}, (arg, prev,reaction) => {
-    console.log('reaction => data',arg);  // 改变后 count
-    console.log('reaction => data',prev); // 改变前 count
+}, (arg, prev, reaction) => {
+    console.log('reaction => data', arg);  // 改变后 count
+    console.log('reaction => data', prev); // 改变前 count
     //手动停止监听，实现when的功能
     reaction.dispose();
 })
+
+store.todos.push(observable({ id: 1, name: 'hello1' }))
+store.todos.push(observable({ id: 2, name: 'hello2' }))
+store.todos[0].name = 'world2'

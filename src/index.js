@@ -5,19 +5,19 @@
 // console.log("hello world kerwin")
 import React from 'react'
 import ReactDOM from 'react-dom'
-import App from './06-Mobx/App';
-import RootStore from './06-Mobx/stores';
-import { Provider } from 'mobx-react';
-// import App from "./04-router/App"
-import { configure } from "mobx"
-// configure({enforceActions: true})
+import App from './05-antd/05-layout-table'
+import 'antd/dist/antd.css'
 ReactDOM.render(
-    <Provider {...new RootStore()}>
+    // <React.StrictMode>
             <App/>
-    </Provider>
+    // </React.StrictMode>
     ,document.getElementById("root"))
 
 
+// ReactDOM.render(React.createElement("div",{
+//     id:"aaa",
+//     class:"bbb"
+// },"111111111"),document.getElementById("root"))
 
 /*
  jsx == js+xml

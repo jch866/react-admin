@@ -1,3 +1,4 @@
+
 //装饰器学习   装饰器就是对类处理的一个函数
 @fn
 @fn2(3) //传参的时候加括号，其它时候不加
@@ -7,6 +8,10 @@ class Myclass {
     @noEnumerable bar = 'foo'
     @noEnumerable test() {
         console.log('hello test')
+    }
+    @logger //原型（实例）上的装饰器
+    add(a, b) {
+        return a + b
     }
 }
 //target 就是类本身
@@ -40,11 +45,26 @@ console.log('decorator fn2传参 => ', Myclass.count)
 //fn3 实例成员添加属性
 console.log('decorator fn3 => ', new Myclass().name)
 
+
+function logger(target, key, decriptor) {
+    let oldVal = decriptor.value;
+    decriptor.value = function () {
+        console.log(`${key}(${Array.from(arguments).join(',')})`);
+        return oldVal.apply(this, arguments)
+    }
+}
+
+//装饰器另一种写法
+//装饰类的原型 上的 add
+//logger(Myclass.prototype,'add',Object.getOwnPropertyDescriptor(Myclass.prototype,'add'))
+
 const c1 = new Myclass();
 // console.log(c1.message)
 // c1.message = 'world' readonly 不能修改
 // console.log(c1.message)
-
+console.log(c1.add)
+let result = c1.add(1, 2); // function logger 打印日志  add(1,2)
+console.log(result)
 //静态成员不能遍历 foo count
 for (let key in c1) {
     console.log(key, c1[key])

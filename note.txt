@@ -1,4 +1,5 @@
 cd sites/admin && npm start
+项目分支不同代码不同
 rfc  rcc 创建文件结构 快捷方式
 重新学习 react 查漏补缺
 jsx中：
@@ -124,3 +125,4 @@ import { configure } from 'mobx';
 configure({ enforceActions: 'observed' });
 非严格模式下，store数据操作可以不用runInAction包裹，不推荐；
 严格模式下，异步数据操作需要用runInAction包裹（包含捕获异步错误后的数据操作），推荐。
+
